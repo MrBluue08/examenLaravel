@@ -27,6 +27,54 @@ class UserController extends Controller
         return view("login", compact("error"));
     }
 
+    public function register(Request $request){
+        request()->validate([
+            'mail' => 'required',
+            'name' => 'required',
+            'surname' => 'required',
+            'adress' => 'required',
+            'birthDate' => 'required',
+            'gender' => 'required',
+            'passwd' => 'required',
+            'passwdAgain' => 'required'
+        ]);
+
+        $mail = request()->input('mail');
+        $name = request()->input('name');
+        $surname = request()->input('surname');
+        $adress = request()->input('adress');
+        $birthDate = request()->input('birthDate');
+        $gender = request()->input('gender');
+        $passwd = request()->input('passwd');
+        $passwdAgain = request()->input('passwdAgain');
+
+        $user = User::where('mail', $mail)->first();
+        
+        if($passwd == $passwdAgain and !$user) {
+
+            $registered = new User;
+            $registered->mail = $mail;
+            $registered->name = $name;
+            $registered->surname = $surname;
+            // $registered->userAdress = $adress;
+            // $registered->userGender = $gender;
+            // $registered->userBirthDay = $birthDate;
+            $registered->password = Hash::make($passwd);
+            $registered->save();
+
+            Auth::guard('user')->login($registered);
+            session(['userMail' => $registered->mail]);
+
+            return redirect()->route('main');
+        }else{
+            return redirect()->route('registerForm');
+        }
+    }
+
+    public function registerForm(){
+        return view('register');
+    }
+
     public function auth(){
         request()->validate([
             'mail' => 'required',
