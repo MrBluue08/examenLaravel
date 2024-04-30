@@ -2,15 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Ciutat;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
+use App\Models\Casal;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Faker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class UserFactory extends Factory
+class CasalFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,8 +21,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'nick' => fake()->name(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+            'nom' => fake()->name(),
+            'data_inici' => fake()->date(),
+            'data_final' => fake()->date(),
+            'n_places' => 10,
+            'id_ciutat' => 0
         ];
     }
 }

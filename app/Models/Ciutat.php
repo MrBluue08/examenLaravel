@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class User extends Model implements Authenticatable
+class Ciutat extends Model
 {
-    use HasFactory,AuthenticatableTrait;
+    use HasFactory;
     
     protected $fillable = [
-        'nick',
-        'password'
+        'id',
+        'nom',
+        'n_habitants'
     ];
+
+    public static function getCityById($id){
+        return self::where('id', $id)->get()->first();
+    }
 }

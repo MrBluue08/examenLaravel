@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class User extends Model implements Authenticatable
+class Casal extends Model
 {
-    use HasFactory,AuthenticatableTrait;
+    use HasFactory;
     
     protected $fillable = [
-        'nick',
-        'password'
+        'nom',
+        'data_inici',
+        'data_final',
+        'n_places',
+        'id_ciutat'
     ];
 }

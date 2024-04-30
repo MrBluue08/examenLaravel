@@ -13,14 +13,14 @@
                 <form action="{{route('auth')}}" method="post">
                     @csrf
                     <div>
-                        <label for="id">Email:</label>
-                        @if($error=='mail')
-                            <input type="email" id="mail" name="mail">
+                        <label for="id">Nick:</label>
+                        @if($error=='nick')
+                            <input type="text" id="nick" name="nick">
                             <div>
                                 Usuario inexistente o desactivado
                             </div>
                         @else
-                            <input type="email" id="mail" name="mail">
+                            <input type="text" id="nick" name="nick">
                         @endif
                     </div>
                     <div>
